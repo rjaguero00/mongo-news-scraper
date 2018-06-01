@@ -10,7 +10,7 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("./models");
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
@@ -40,6 +40,9 @@ mongoose.connect(MONGODB_URI);
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function (req, res) {
+    db.Article.remove({}, function () {
+        console.log('DB Cleared')
+    });
     // First, we grab the body of the html with request
     axios.get("https://www.mlb.com/news").then(function (response) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -58,12 +61,10 @@ app.get("/scrape", function (req, res) {
                 .find("a")
                 .attr("href");
 
-            console.log(result);
             // Create a new Article using the `result` object built from scraping
             db.Article.create(result)
                 .then(function (dbArticle) {
                     // View the added result in the console
-                    console.log(dbArticle);
                 })
                 .catch(function (err) {
                     // If an error occurred, send it to the client

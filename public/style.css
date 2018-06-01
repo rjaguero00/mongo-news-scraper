@@ -10,5 +10,6 @@
     width: 30%;
 }
 
-
-
+a.btn.btn-primary {
+    float: right;
+}
