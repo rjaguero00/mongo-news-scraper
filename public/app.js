@@ -16,3 +16,4 @@ $('#scrape-btn').on('click', function () {
             location.reload();
         });
 })
+
