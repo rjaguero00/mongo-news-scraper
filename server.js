@@ -66,6 +66,7 @@ app.get("/scrape", function (req, res) {
                 .then(function (dbArticle) {
                     // View the added result in the console
                 })
+
                 .catch(function (err) {
                     // If an error occurred, send it to the client
                     return res.json(err);
