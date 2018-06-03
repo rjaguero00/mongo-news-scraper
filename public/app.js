@@ -19,7 +19,7 @@ $('#scrape-btn').on('click', function () {
         });
 })
 
-$('.save-btn').on("click", function () {
+$(document).on("click", '.save-btn', function () {
     console.log('working')
     var thisId = $(this).attr("data-id");
 
