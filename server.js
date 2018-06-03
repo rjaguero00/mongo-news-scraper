@@ -89,6 +89,27 @@ app.get("/articles", function (req, res) {
         .catch(function (err) {
             // If an error occurred, send it to the client
             res.json(err);
+        })
+});
+
+app.get("/saved", function (req, res) {
+    db.Article.find({
+        saved: true
+    })
+        .then(function (dbArticle) {
+            res.json(dbArticle);
+        }).catch(function (err) {
+            res.json(err);
+        })
+});
+
+app.put("/saved/:id", function (req, res) {
+    db.Article.update({ _id: req.params.id }, { saved_status: true })
+        .then(function (result) {
+            res.json(result);
+        })
+        .catch(function (error) {
+            res.json(error);
         });
 });
 
