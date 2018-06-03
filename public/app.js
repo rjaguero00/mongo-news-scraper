@@ -19,7 +19,7 @@ $('#scrape-btn').on('click', function () {
         });
 })
 
-$('#saved-articles').on("click", function () {
+$('.save-btn').on("click", function () {
     console.log('working')
     var thisId = $(this).attr("data-id");
 
@@ -36,7 +36,6 @@ $('#saved-articles').on("click", function () {
 });
 
 $.getJSON("/saved", function (data) {
-    // For each one
     console.log(data)
     for (var i = 0; i < data.length; i++) {
         $(".saved-articles").append("<div class='card' data-id=" + data[i]._id + "> <div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5><p class='card-text'>" + data[i].link + " <a href='#' class='delete-btn btn btn-primary'>Delete Article</a></div></div></div>");

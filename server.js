@@ -104,7 +104,7 @@ app.get("/saved", function (req, res) {
 });
 
 app.put("/saved/:id", function (req, res) {
-    db.Article.update({ _id: req.params.id }, { saved_status: true })
+    db.Article.update({ _id: req.params.id }, { saved: true })
         .then(function (result) {
             res.json(result);
         })
