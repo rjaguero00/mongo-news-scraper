@@ -36,8 +36,8 @@ $(document).on("click", '.save-btn', function () {
 });
 
 $.getJSON("/saved", function (data) {
-    console.log(data)
     for (var i = 0; i < data.length; i++) {
-        $(".saved-articles").append("<div class='card' data-id=" + data[i]._id + "> <div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5><p class='card-text'>" + data[i].link + " <a href='#' class='delete-btn btn btn-primary'>Delete Article</a></div></div></div>");
+        // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+        $(".save").append("<div class='card' data-id=" + data[i]._id + "> <div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5><p class='card-text'>" + data[i].link + " <a href='#' class='save-btn btn btn-primary'>Save Article</a></div></div></div>");
     }
 });
