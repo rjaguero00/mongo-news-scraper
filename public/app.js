@@ -2,7 +2,7 @@
 $.getJSON("/articles", function (data) {
     for (var i = 0; i < data.length; i++) {
         // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-        $(".article").append("<div class='card' data-id=" + data[i]._id + "> <div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5><p class='card-text'>" + data[i].link + " <a href='#' class='save-btn btn btn-primary'>Save Article</a></div></div></div>");
+        $(".article").append("<div class='card'> <div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5><p class='card-text'>" + data[i].link + " <a href='#' class='save-btn btn btn-primary' data-id=" + data[i]._id + ">Save Article</a></div></div></div>");
     }
 });
 
@@ -30,7 +30,7 @@ $(document).on("click", '.save-btn', function () {
     })
         .then(function (data) {
             console.log("article saved");
-            location.reload();
+            // location.reload();
         });
 
 });
@@ -38,6 +38,6 @@ $(document).on("click", '.save-btn', function () {
 $.getJSON("/saved", function (data) {
     for (var i = 0; i < data.length; i++) {
         // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-        $(".save").append("<div class='card' data-id=" + data[i]._id + "> <div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5><p class='card-text'>" + data[i].link + " <a href='#' class='save-btn btn btn-primary'>Save Article</a></div></div></div>");
+        $(".save").append("<div class='card'> <div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5><p class='card-text'>" + data[i].link + " <a href='#' class='save-btn btn btn-primary' data-id=" + data[i]._id + ">Save Article</a></div></div></div>");
     }
 });

@@ -43,13 +43,13 @@ if (process.env.MONGODB_URI) {
     mongoose.connect(databaseUri);
 }
 
-var db = mongoose.connection;
+var dbConn = mongoose.connection;
 
-db.on('error', function (err) {
+dbConn.on('error', function (err) {
     console.log('Mongoose Error: ', err);
 });
 
-db.once('open', function () {
+dbConn.once('open', function () {
     console.log('Mongoose connection successful.');
 });
 
