@@ -38,6 +38,23 @@ $(document).on("click", '.save-btn', function () {
 $.getJSON("/saved", function (data) {
     for (var i = 0; i < data.length; i++) {
         // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-        $(".save").append("<div class='card'> <div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5><p class='card-text'>" + data[i].link + " <a href='#' class='save-btn btn btn-primary' data-id=" + data[i]._id + ">Save Article</a></div></div></div>");
+        $(".save").append("<div class='card'> <div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5><p class='card-text'>" + data[i].link + " <a href='#' class='remove-btn btn btn-primary' data-id=" + data[i]._id + ">Remove Article</a></div></div></div>");
     }
 });
+
+$(document).on("click", ".remove-btn", function () {
+    event.preventDefault();
+
+    // Grabs the article's id
+    var thisId = $(this).attr("data-id");
+
+    // Make an ajax call to unsave the article
+    $.ajax({
+        method: "PUT",
+        url: "/unsaved/" + thisId
+    })
+        .then(function () {
+            console.log("Article has been unsaved");
+            location.reload();
+        })
+})

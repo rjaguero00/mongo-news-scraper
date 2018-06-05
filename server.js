@@ -132,6 +132,16 @@ app.get("/saved", function (req, res) {
         });
 });
 
+app.put("/unsaved/:id", function (req, res) {
+    db.Article.update({ _id: req.params.id }, { saved: false })
+        .then(function (result) {
+            res.json(result);
+        })
+        .catch(function (error) {
+            res.json(error);
+        });
+});
+
 // // Route for grabbing a specific Article by id, populate it with it's note
 // app.get("/articles/:id", function (req, res) {
 //     // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
